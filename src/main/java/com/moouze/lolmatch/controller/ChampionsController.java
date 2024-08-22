@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/champions")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -18,6 +20,10 @@ public class ChampionsController {
     public ResponseEntity<Champions> post(@Valid @RequestBody Champions champions){
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(championsRepository.save(champions));
+    }
+    @GetMapping
+    public ResponseEntity<List<Champions>> getAll (){
+        return ResponseEntity.ok(championsRepository.findAll());
     }
 
 }
