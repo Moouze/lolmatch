@@ -26,4 +26,11 @@ public class ChampionsController {
         return ResponseEntity.ok(championsRepository.findAll());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Champions> getById(@PathVariable Long id){
+        return championsRepository.findById(id)
+                .map(resposta -> ResponseEntity.ok(resposta))
+                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    }
+
 }
