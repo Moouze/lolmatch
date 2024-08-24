@@ -21,6 +21,7 @@ public class ChampionsController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(championsRepository.save(champions));
     }
+
     @GetMapping
     public ResponseEntity<List<Champions>> getAll (){
         return ResponseEntity.ok(championsRepository.findAll());
