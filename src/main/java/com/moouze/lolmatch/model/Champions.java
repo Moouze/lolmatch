@@ -1,5 +1,6 @@
 package com.moouze.lolmatch.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -13,6 +14,18 @@ public class Champions {
     @NotBlank(message = "the NAME attribute cannot be empty")
     @Size(max = 45)
     private String name;
+
+    @ManyToOne
+    @JsonIgnoreProperties("champions")
+    private Match match;
+
+    public Match getMatch() {
+        return match;
+    }
+
+    public void setMatch(Match match) {
+        this.match = match;
+    }
 
     public Long getId() {
         return id;
